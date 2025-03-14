@@ -9,6 +9,8 @@ const Contact = () => {
       transition={{ duration: 0.8 }}
       viewport={{ once: false }}
     >
+      <div className="bg-[#AB886D] text-[#FBFBFB] p-4 rounded-lg shadow-lg flex flex-col items-center mt-6">
+      <h2 className="text-xl font-bold mb-4">Contact Me</h2>
       <div className="text-center mb-6">
         <p>If you have any questions or want to book an appointment, feel free to contact us!</p>
       </div>
@@ -58,6 +60,7 @@ const Contact = () => {
         <p>We are located at:</p>
         <p>| Rabukpotha road,Near to Knuckles A Hostal |</p><p> | Open Daily | </p>
       </motion.div>
+    </div>
     </motion.section>
   );
 };
