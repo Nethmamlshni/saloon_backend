@@ -26,18 +26,9 @@ function Navbar() {
     setIsAuthenticated(false);
     navigate("/"); // Redirect to home or login page
   };
-  const token = localStorage.getItem("token");
-  const handleProfilePage = (token : any) => {
-    localStorage.setItem("id", token.id); 
-    console.log(token.id); // Set userId in localStorage
-    const userId = localStorage.getItem("id");
-    console.log("Retrieved userId from localStorage:", userId); // Debugging line
-    if (userId) {
-      navigate(`/profile/${userId}`); // Navigate to profile with userId
-    } else {
-      console.log("User not logged in or userId not found.");
-      navigate("/signin"); // Redirect to signin page if userId is not found
-    }
+
+  const handleProfilePage = () => {
+    navigate("/profile");
   };
 
   return (
@@ -49,14 +40,14 @@ function Navbar() {
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.5 }}
 >
-  <h1 className="text-2xl font-bold text-black">Saloon Yapa</h1> {/* Changed text color to black */}
+  <h1 className="text-2xl font-bold text-black">Saloon Yapa</h1> 
 
   <div className="flex space-x-6">
     {isAuthenticated ? (
       <div className="flex items-center space-x-4">
         <span 
         className="text-3xl text-black cursor-pointer hover:text-gray-600 transition"
-        onClick={() => handleProfilePage(true)}
+        onClick={() => handleProfilePage()}
         >
           <FaUser />
         </span>
