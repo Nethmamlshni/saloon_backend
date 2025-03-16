@@ -39,7 +39,7 @@ const Contact = () => {
       
       {/* WhatsApp Group Link */}
       <motion.a
-        href="https://chat.whatsapp.com/YourGroupLinkCode" // Replace with your WhatsApp group link
+        href="https://chat.whatsapp.com/BFGvkwm5LnEGitly14aKPk" // Replace with your WhatsApp group link
         target="_blank"
         rel="noopener noreferrer"
         className="text-xl flex items-center space-x-2"

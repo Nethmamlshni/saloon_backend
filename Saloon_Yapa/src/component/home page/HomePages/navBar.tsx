@@ -44,33 +44,40 @@ function Navbar() {
     <>
       {/* Navbar */}
       <motion.nav 
-        className="bg-[#493628] p-4 flex justify-between items-center text-white"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+  className="p-4 flex justify-between items-center text-white fixed top-0 left-0 w-full z-50 shadow-lg "
+  initial={{ opacity: 0, y: -20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+>
+  <h1 className="text-2xl font-bold text-black">Saloon Yapa</h1> {/* Changed text color to black */}
+
+  <div className="flex space-x-6">
+    {isAuthenticated ? (
+      <div className="flex items-center space-x-4">
+        <span 
+        className="text-3xl text-black cursor-pointer hover:text-gray-600 transition"
+        onClick={() => handleProfilePage(true)}
+        >
+          <FaUser />
+        </span>
+        <button
+          className="bg-transparent text-black border border-black p-2 rounded hover:bg-black hover:text-white transition"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
+    ) : (
+      <span 
+        className="text-3xl text-black cursor-pointer hover:text-gray-600 transition"
+        onClick={() => setIsLoginOpen(true)}
       >
-        <h1 className="text-2xl font-bold">Saloon Yapa</h1>
-        <div className="flex space-x-6">
-          {isAuthenticated ? (
-            <div className="flex items-center space-x-4">
-              <span className="text-xl" onClick={handleProfilePage}>Profile</span>
-              <button
-                className="bg-[#AB886D] text-white p-2 rounded hover:bg-[#493628]"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <span 
-              className="text-3xl cursor-pointer hover:text-[#AB886D] transition"
-              onClick={() => setIsLoginOpen(true)}
-            >
-              <FaUser />
-            </span>
-          )}
-        </div>
-      </motion.nav>
+        <FaUser />
+      </span>
+    )}
+  </div>
+</motion.nav>
+
 
       {/* Login & Register Modal */}
       {isLoginOpen && !isAuthenticated && (

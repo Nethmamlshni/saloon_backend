@@ -33,12 +33,20 @@ function Booking({ onSuccess }: BookingProps) {
 
     console.log("Sending booking data:", bookingData);
 
+    // Get token from localStorage
+    const token = localStorage.getItem("token");
+
     try {
-      const response = await axios.post("http://localhost:3000/api/bookings/booking", bookingData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "http://localhost:3000/api/bookings/booking", 
+        bookingData, 
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,  // Add the token in the header
+          },
+        }
+      );
 
       console.log("Booking Success:", response.data);
       alert("Booking Submitted Successfully!");
@@ -58,13 +66,14 @@ function Booking({ onSuccess }: BookingProps) {
     } catch (err: any) {
       console.error("Booking Error:", err);
       setError(err.response?.data?.error || "Failed to submit booking. Please try again.");
+      alert("Failed to submit booking. first you can log the web side .");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-[#AB886D] text-[#FBFBFB] p-4 rounded-lg shadow-lg flex flex-col items-center mt-6">
+    <div className=" text-[#0c0707] p-4 rounded-lg shadow-lg flex flex-col items-center mt-12 ">
       <h2 className="text-xl font-bold mb-4">Book an Appointment</h2>
       <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
         <input
@@ -111,7 +120,7 @@ function Booking({ onSuccess }: BookingProps) {
 
         <button
           type="submit"
-          className="bg-[#493628] text-[#FBFBFB] p-3 m-2 rounded-lg hover:bg-[#D6C0B3] transition"
+          className=" text-[#080101] p-3 m-2 rounded-lg hover:bg-[#D6C0B3] transition border-1"
           disabled={loading}
         >
           {loading ? "Submitting..." : "Book Now"}

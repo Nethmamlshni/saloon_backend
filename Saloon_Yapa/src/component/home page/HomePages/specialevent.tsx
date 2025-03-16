@@ -3,8 +3,8 @@ import { useState } from "react";
 
 const EventPage = () => {
   const images = [
-    "/public/WhatsApp Image 2025-03-11 at 22.41.25.jpeg",
-    "/public/WhatsApp Image 2025-03-11 at 22.42.21.jpeg",
+    "/WhatsApp Image 2025-03-11 at 22.41.25.jpeg",
+    "/WhatsApp Image 2025-03-11 at 22.42.21.jpeg",
   ];
 
   // State to track the current image index

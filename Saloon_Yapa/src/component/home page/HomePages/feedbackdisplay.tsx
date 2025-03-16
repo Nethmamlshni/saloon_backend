@@ -3,26 +3,30 @@ import { motion } from 'framer-motion';
 const DisplayFeedback = () => {
   const feedbackData = [
     {
+      name: "John Doe",
       message: "I loved my haircut at Saloon Yapa! The stylist was amazing and really took the time to understand what I wanted.",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
       date: "2025-03-12",
     },
     {
+      name: "Jane Smith",
       message: "The ambiance was so relaxing! My facial was so rejuvenating, and I felt like I was treated like royalty.",
       rating: 4,
       avatar: "https://randomuser.me/api/portraits/women/46.jpg",
       date: "2025-03-10",
     },
     {
+      name: "Bob Johnson",
       message: "Service was okay, but I had to wait a bit longer than expected. The staff was friendly though.",
       rating: 3,
       avatar: "https://randomuser.me/api/portraits/men/21.jpg",
       date: "2025-03-08",
     },
     {
+      name: "Emily Davis",
       message: "Had an amazing massage! The best experience at a salon I've ever had. Highly recommend it to everyone!",
-      rating: 5,
+      rating: 3,
       avatar: "https://randomuser.me/api/portraits/women/15.jpg",
       date: "2025-03-05",
     }
@@ -58,7 +62,7 @@ const DisplayFeedback = () => {
                 className="w-12 h-12 rounded-full border-2 border-gray-200"
               />
               <div>
-                <h4 className="font-semibold text-lg">Customer #{index + 1}</h4>
+                <h4 className="font-semibold text-lg">{feedback.name}</h4>
                 <p className="text-gray-500 text-sm">{feedback.date}</p>
               </div>
             </div>

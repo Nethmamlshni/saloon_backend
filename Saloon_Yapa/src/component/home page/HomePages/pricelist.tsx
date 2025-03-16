@@ -2,15 +2,16 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const serviceList = [
-  { name: "Haircuts", price: 20 },
-  { name: "Shaving", price: 15 },
-  { name: "Hair & Beard Cutting", price: 30 },
-  { name: "Outline Cut", price: 20 },
-  { name: "Haircut & Massage", price: 35 },
-  { name: "Oil Massage Facial Scrub", price: 40 },
-  { name: "Toner Face Cleaner", price: 25 },
-  { name: "Removes Dead Skin Cells", price: 30 },
-  { name: "Hair Cream Massage", price: 28 },
+  { name: "Haircuts", price: 300 },
+  { name: "Shaving", price: 200 },
+  { name: "Hair & Beard Cutting", price: 400 },
+  { name: "Outline Cut", price: 150 },
+  { name: "Haircut & Massage", price: 400 },
+  { name: "Oil Massage ", price: 200 },
+  { name: "Facial Scrub", price:300},
+  { name: "Toner Face Cleaner", price: 350 },
+  { name: "Remove Dead Skin Cells", price: 400 },
+  { name: "Hair Cream Massage", price: 350 },
 ];
 
 const PriceList: React.FC = () => {
@@ -31,7 +32,7 @@ const PriceList: React.FC = () => {
               transition={{ duration: 0.2 }}
             >
               <span>{service.name}</span>
-              <span>${service.price}</span>
+              <span>Rs.{service.price}</span>
             </motion.li>
           ))}
         </ul>
