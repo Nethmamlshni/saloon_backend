@@ -106,6 +106,18 @@ const UserProfile: React.FC = () => {
             <p className="mb-2"><strong>Username:</strong> {user.username}</p>
             <p className="mb-2"><strong>Email:</strong> {user.email}</p>
             <p className="mb-4"><strong>TP Number:</strong> {user.TPNumber}</p>
+            <div className="flex justify-between p-4">
+  {/* Left side: Feedback link */}
+  <p onClick={() => navigate('/feedback')} className="text-white cursor-pointer underline">
+    Feedback
+  </p>
+
+  {/* Right side: Home Page link */}
+  <p onClick={() => navigate('/')} className="text-white cursor-pointer underline">
+    Home Page
+  </p>
+</div>
+
             <button
               onClick={() => setEditing(true)}
               className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition duration-200"
