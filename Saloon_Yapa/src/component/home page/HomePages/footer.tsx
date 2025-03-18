@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaBehance } from "re
 const Footer: React.FC = () => {
   return (
     <div className="bg-black text-white p-6 flex flex-col items-center mt-6 rounded-t-lg">
-      <h2 className="text-xl font-bold mb-4">Saloon Yapa</h2>
+      <h2 className="text-3xl font-bold mb-4 ">𝓢𝓪𝓵𝓸𝓷  𝓨𝓪𝓹𝓪</h2>
       <p className="text-center max-w-lg">
         At Saloon Yapa, we pride ourselves on providing top-notch beauty and wellness services to our valued customers.
         Our experienced staff ensures that you receive the highest quality treatments in a relaxed and welcoming environment.
