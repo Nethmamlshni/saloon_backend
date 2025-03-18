@@ -1,51 +1,42 @@
-import Booking from "./HomePages/booking";
 import Navbar from "./HomePages/navBar";
-import PriceList from "./HomePages/pricelist";
 import EventPage from "./HomePages/specialevent";
 import DisplayFeedback from "./HomePages/feedbackdisplay";
 import Contact from "./HomePages/contact";
 import Footer from "./HomePages/footer";
+import HomeimagePage from "./HomePages/Homeimagpage";
 
 const HomePage: React.FC = () => {
   
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#E4E0E1] to-[#D6C0B3] p-6 font-['Times_New_Roman']">
+    <>
+    <div className="min-h-screen bg-gradient-to-r from-[#0c0c0c] to-[#0e0505] p-6 font-['Times_New_Roman']">
       {/* Navbar */}
       <Navbar />
 
-      {/* Booking section*/ }
-      <Booking />    
-
-      {/* Horizontal Line after Booking section */}
-      <hr className="my-8 border-t-2 border-[#493628]" />
-
-      {/* Price List */}
-      <PriceList />
-
-      {/* Horizontal Line after Price List */}
-      <hr className="my-8 border-t-2 border-[#493628]" />
+      {/* Home image */}
+      <HomeimagePage />
+     </div>
+     <div className=" bg-gradient-to-r from-white to-white p-6 font-['Times_New_Roman']">
 
       {/* Special Events */}
       <EventPage />
-
-      {/* Horizontal Line after Special Events */}
-      <hr className="my-8 border-t-2 border-[#493628]" />
+      </div>
+      <div className=" bg-gradient-to-r from-[#090909] to-[#050404] p-6 font-['Times_New_Roman']">
 
       {/* Feedback */}
       <DisplayFeedback />
-
-      {/* Horizontal Line after Feedback */}
-      <hr className="my-8 border-t-2 border-[#493628]" />
+      </div>
+      <div className=" bg-gradient-to-r from-[#fdfdfd] to-[#f7f6f6] p-6 font-['Times_New_Roman']">
 
       {/* Contact */}
       <Contact />
-
-      {/* Horizontal Line before Footer */}
-      <hr className="my-8 border-t-2 border-[#493628]" />
+      </div>
+      <div className=" bg-gradient-to-r from-[#0c0c0c] to-[#070606] p-6 font-['Times_New_Roman']">
 
       {/* Footer */}
       <Footer />
-    </div>
+      </div>
+    </>
   );
 };
 

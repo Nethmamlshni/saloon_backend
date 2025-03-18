@@ -3,19 +3,22 @@ import { useState } from "react";
 
 const EventPage = () => {
   const images = [
-    "/WhatsApp Image 2025-03-11 at 22.41.25.jpeg",
-    "/WhatsApp Image 2025-03-11 at 22.42.21.jpeg",
+    "https://img.freepik.com/free-photo/close-up-wet-hair-receiving-haircut_23-2148256885.jpg?w=1480",
+    "https://img.freepik.com/free-photo/hairstylist-looking-client-mirror_23-2148242870.jpg?w=1480",
+    "https://img.freepik.com/free-photo/man-checking-phone-while-getting-haircut_23-2148242784.jpg?w=826",
+    "https://img.freepik.com/free-photo/customer-getting-wash-after-haircut_23-2148256876.jpg?w=1480",
+    "https://img.freepik.com/free-photo/close-up-hairstylist-cutting-customer-hair_23-2148256892.jpg?w=1480",
+    "https://img.freepik.com/free-photo/beautician-holding-ear-haircut_23-2148256898.jpg?w=1480",
+    "https://img.freepik.com/free-photo/hairdresser-trimming-customer-hair_23-2148256894.jpg?w=1480",
+    "https://img.freepik.com/free-photo/close-up-man-getting-haircut-with-trimmer_23-2148256902.jpg?w=826",
   ];
 
-  // State to track the current image index
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Function to go to the previous image
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
 
-  // Function to go to the next image
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
@@ -27,27 +30,25 @@ const EventPage = () => {
       transition={{ duration: 1 }}
       className="p-6"
     >
-      {/* Event Title */}
       <motion.h1
-        className="text-xl font-bold text-center text-[#493628] mb-6"
+        className="text-2xl font-bold text-center text-[#080808] mb-6"
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.3 }}
       >
-        Special Event Event
+        Gallery Events
       </motion.h1>
 
-      {/* Carousel Section */}
+      {/* Smaller Gallery Container */}
       <motion.div
         id="gallery"
-        className="relative w-full"
+        className="relative w-full max-w-2xl mx-auto"
         data-carousel="slide"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.6 }}
       >
-        <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
-          {/* Only show the current image */}
+        <div className="relative h-64 md:h-80 overflow-hidden rounded-lg">
           <motion.div
             key={currentIndex}
             className="absolute block w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
@@ -58,66 +59,31 @@ const EventPage = () => {
             <img
               src={images[currentIndex]}
               alt={`Carousel Image ${currentIndex + 1}`}
-              className="w-full h-auto"
+              className="w-full h-auto rounded-lg"
             />
           </motion.div>
         </div>
 
-        {/* Slider controls */}
+        {/* Controls */}
         <button
           type="button"
-          className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 z-30 p-2 rounded-full bg-gray-700 text-white hover:bg-gray-900"
           onClick={handlePrev}
         >
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5 1 1 5l4 4"
-              />
-            </svg>
-            <span className="sr-only">Previous</span>
-          </span>
+          ❮
         </button>
 
         <button
           type="button"
-          className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 z-30 p-2 rounded-full bg-gray-700 text-white hover:bg-gray-900"
           onClick={handleNext}
         >
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg
-              className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 6 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 9 4-4-4-4"
-              />
-            </svg>
-            <span className="sr-only">Next</span>
-          </span>
+          ❯
         </button>
       </motion.div>
 
-      {/* Event Description */}
       <motion.p
-        className="text-lg text-center text-[#7C5A44] mt-6"
+        className="text-lg text-center text-[#050505] mt-6 max-w-xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.9 }}

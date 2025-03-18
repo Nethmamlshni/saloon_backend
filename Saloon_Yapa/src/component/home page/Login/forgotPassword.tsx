@@ -22,30 +22,39 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#F5F5F5] p-4">
-      <div className="p-6 bg-white shadow-lg rounded-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center text-[#493628] mb-4">Forgot Password</h2>
-        {message && <p className="text-center text-red-500">{message}</p>}
+    <div className="flex items-center justify-center min-h-screen bg-[#0a0a0a] p-4">
+      <div className="relative p-6 bg-white shadow-lg rounded-lg max-w-md w-full text-center font-serif">
+        {/* Key Icon at the Top */}
+        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black p-4 rounded-full shadow-lg">
+          <span role="img" aria-label="key" className="text-white text-2xl">🔑</span>
+        </div>
+
+        <h2 className="text-2xl font-bold text-black mt-6 mb-4">Forgot Password</h2>
+
+        {message && <p className="text-red-500 mb-3">{message}</p>}
+
         <form onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full p-2 border rounded mb-3"
+            className="w-70 p-3 border border-black rounded mb-3 focus:outline-none focus:ring-2 focus:ring-black"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+
           <input
             type="text"
             placeholder="Enter your phone number"
-            className="w-full p-2 border rounded mb-3"
+            className="w-70 p-3 border border-black rounded mb-3 focus:outline-none focus:ring-2 focus:ring-black"
             value={TPNumber}
             onChange={(e) => setTPNumber(e.target.value)}
             required
           />
+
           <button
             type="submit"
-            className="w-full bg-[#493628] text-white p-2 rounded hover:bg-[#AB886D] transition"
+            className="w-70 bg-black text-white p-3 rounded hover:bg-gray-800 transition"
           >
             Send Reset Link
           </button>

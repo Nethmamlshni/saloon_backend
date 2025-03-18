@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Navbar from '../HomePages/navBar';
 
 const UserProfile: React.FC = () => {
   const [user, setUser] = useState<{ username: string; email: string; TPNumber: string } | null>(null);
@@ -19,23 +21,18 @@ const UserProfile: React.FC = () => {
     const fetchUserData = async () => {
       try {
         const token = localStorage.getItem('token');
-
         if (!token) {
           setError('User not authenticated');
           return;
         }
-
-        // Decode JWT token
         const decodedToken = JSON.parse(atob(token.split('.')[1]));
         const userId = decodedToken.userId;
-
-        // Fetch user data
         const response = await axios.get(`http://localhost:3000/api/users/user/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         setUser(response.data);
-        setUpdatedUser(response.data); // Set the form fields with user data
+        setUpdatedUser(response.data);
       } catch (error: any) {
         setError(error.response?.data?.message || 'Failed to fetch user data');
       } finally {
@@ -46,84 +43,78 @@ const UserProfile: React.FC = () => {
     fetchUserData();
   }, []);
 
-  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
   };
 
-  // Handle update submission
   const handleUpdateProfile = async () => {
     try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            setError('User not authenticated');
-            return;
-        }
-
-        // Decode JWT token
-        const decodedToken = JSON.parse(atob(token.split('.')[1]));
-        const userId = decodedToken.userId;
-
-        // Send PUT request
-        const response = await axios.put(
-            `http://localhost:3000/api/users/user/${userId}`,
-            updatedUser,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,  // Add the token in the header
-              },
-            }
-        );
-
-        console.log('Update successful:', response.data);
-        setUser(response.data.user);
-        setEditing(false);
-        alert('Profile updated successfully!');
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('User not authenticated');
+        return;
+      }
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      const userId = decodedToken.userId;
+      const response = await axios.put(
+        `http://localhost:3000/api/users/user/${userId}`,
+        updatedUser,
+        { headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } }
+      );
+      setUser(response.data.user);
+      setEditing(false);
+      alert('Profile updated successfully!');
     } catch (error: any) {
-        console.error('Update error:', error.response?.data || error.message);
-        setError(error.response?.data?.message || 'Failed to update user data');
+      setError(error.response?.data?.message || 'Failed to update user data');
     }
-};
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
 
   if (loading) return <div className="text-white text-center mt-10">Loading...</div>;
-
-  if (error) {
-    return (
-      <div className="text-white text-center mt-10">
-        <h1 className="text-2xl font-semibold">Error</h1>
-        <p>{error}</p>
-      </div>
-    );
-  }
+  if (error) return <div className="text-white text-center mt-10">{error}</div>;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900 text-white">
-      <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-96">
+    <div className="flex justify-center items-center min-h-screen bg-black text-black font-serif">
+      <Navbar />
+      <motion.div
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white p-6 rounded-lg shadow-lg w-96"
+      >
         <h1 className="text-2xl font-bold text-center mb-4">User Profile</h1>
         {user && !editing ? (
           <div>
+            {/*display default profile photo */}
+            <img
+              src="https://img.freepik.com/free-vector/young-boy-vector-illustration_1308-175902.jpg?t=st=1742284049~exp=1742287649~hmac=3b16b4c60d1b94195ac1f7520ca6e79d1521eff30b3195dc770fd1134533d87c&w=1060"
+              alt="Default Profile"
+              className="w-24 h-24 rounded-full mx-auto mb-4"
+            />
             <p className="mb-2"><strong>Username:</strong> {user.username}</p>
             <p className="mb-2"><strong>Email:</strong> {user.email}</p>
             <p className="mb-4"><strong>TP Number:</strong> {user.TPNumber}</p>
-            <div className="flex justify-between p-4">
-  {/* Left side: Feedback link */}
-  <p onClick={() => navigate('/feedback')} className="text-white cursor-pointer underline">
-    Feedback
-  </p>
-
-  {/* Right side: Home Page link */}
-  <p onClick={() => navigate('/')} className="text-white cursor-pointer underline">
-    Home Page
-  </p>
-</div>
-
-            <button
+            <p className="mb-4 text-center underline cursor-pointer " onClick={() => navigate('/feedback')}> Add your valuable feedback to our website</p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setEditing(true)}
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition duration-200"
+              className="w-full bg-black text-white hover:bg-gray-300 font-semibold py-2 rounded-lg transition duration-200"
             >
               Edit Profile
-            </button>
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleLogout}
+              className="w-full mt-2 bg-gray-700 text-white hover:bg-gray-600 font-semibold py-2 rounded-lg transition duration-200"
+            >
+              Logout
+            </motion.button>
           </div>
         ) : (
           <div>
@@ -132,7 +123,7 @@ const UserProfile: React.FC = () => {
               name="username"
               value={updatedUser.username}
               onChange={handleChange}
-              className="w-full mb-2 p-2 rounded bg-gray-700 text-white"
+              className="w-full mb-2 p-2 rounded bg-white text-black border-1"
               placeholder="Username"
             />
             <input
@@ -140,7 +131,7 @@ const UserProfile: React.FC = () => {
               name="email"
               value={updatedUser.email}
               onChange={handleChange}
-              className="w-full mb-2 p-2 rounded bg-gray-700 text-white"
+              className="w-full mb-2 p-2 rounded bg-white text-black border-1"
               placeholder="Email"
             />
             <input
@@ -148,24 +139,28 @@ const UserProfile: React.FC = () => {
               name="TPNumber"
               value={updatedUser.TPNumber}
               onChange={handleChange}
-              className="w-full mb-4 p-2 rounded bg-gray-700 text-white"
+              className="w-full mb-4 p-2 rounded bg-white text-black border-1"
               placeholder="Telephone Number"
             />
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleUpdateProfile}
-              className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg transition duration-200 mb-2"
+              className="w-full bg-black text-white hover:bg-gray-300 font-semibold py-2 rounded-lg transition duration-200 mb-2"
             >
               Save Changes
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => setEditing(false)}
-              className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition duration-200"
+              className="w-full bg-gray-700 text-white hover:bg-gray-600 font-semibold py-2 rounded-lg transition duration-200"
             >
               Cancel
-            </button>
+            </motion.button>
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };

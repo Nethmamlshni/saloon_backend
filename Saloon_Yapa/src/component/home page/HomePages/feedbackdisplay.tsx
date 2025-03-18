@@ -36,21 +36,16 @@ const DisplayFeedback = () => {
         {feedbackData.map((feedback, index) => (
           <motion.div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 flex-none w-80"
+            className="bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 flex-none w-80 pb-0 p-4 border border-white"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: index * 0.3 }} // Staggered animation for each feedback
           >
             <div className="flex items-center space-x-4">
-              {/* Use default profile image if no avatar is provided */}
-              <img
-                src={feedback.avatar || 'https://via.placeholder.com/150'} // Default image URL if no avatar
-                alt="User Avatar"
-                className="w-12 h-12 rounded-full border-2 border-gray-200"
-              />
+              
               <div>
                 <h4 className="font-semibold text-lg">{feedback.name}</h4>
-                <p className="text-gray-500 text-sm">{new Date(feedback.createdAt).toLocaleDateString()}</p>
+                <p className="text-white text-sm">{new Date(feedback.createdAt).toLocaleDateString()}</p>
               </div>
             </div>
             <p className="text-lg mt-4">{feedback.message}</p>
