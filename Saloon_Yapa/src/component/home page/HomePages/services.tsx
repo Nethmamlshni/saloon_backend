@@ -1,5 +1,6 @@
 import React from "react";
 import "animate.css";
+import Navbar from "./navBar";
 
 const services = [
   {
@@ -27,7 +28,9 @@ const services = [
 
 const ServicesPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-6">
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white p-6 mt-15">
       <h1 className="text-4xl font-serif text-center animate__animated animate__fadeInDown mb-8">Our Services</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
@@ -43,6 +46,7 @@ const ServicesPage: React.FC = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 

@@ -29,14 +29,14 @@ function Navbar() {
     <>
       {/* Navbar */}
       <motion.nav 
-  className="p-4 flex  justify-between items-center text-white  bg-black fixed top-0 left-0 w-full z-50 shadow-lg "
+  className="p-4 flex  justify-between items-center text-white  bg-black fixed top-0 left-0 w-full z-50 shadow-lg"  
   initial={{ opacity: 0, y: -20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.5 }}
 >
   <h1 className="text-2xl font-bold text-black"></h1> 
 
-  <div className="flex space-x-6">
+  <div className="flex space-x-6 ">
     {isAuthenticated ? (
       <div className="flex items-center space-x-4">
          <p className="font-bold  font-serif text-white mr-6 mt-5 cursor-pointer hover:underline" onClick={() => navigate("/")}>Home </p>
@@ -61,6 +61,7 @@ function Navbar() {
       </div>
     )}
   </div>
+
 </motion.nav>
 
 

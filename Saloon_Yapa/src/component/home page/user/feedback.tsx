@@ -64,7 +64,7 @@ const Feedback = () => {
       });
       if (response.ok) {
         setResponseMessage("Thank you for your feedback!");
-        setFormData({ name: "", email: user?.email || "", message: "", rate:0 });
+        setFormData({ name: "", email: user?.email, message: "", rate:0 });
         alert("Feedback submitted successfully!");
         navigate("/profile");
       } else {
@@ -81,7 +81,7 @@ const Feedback = () => {
    <Navbar />
     <motion.section
       id="feedback"
-      className=" p-6 rounded-lg shadow-lg m-auto bg-black text-white max-w-md border"
+      className=" p-6 rounded-lg shadow-lg m-auto bg-black text-white max-w-md border "
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -114,18 +114,8 @@ const Feedback = () => {
             readOnly
           />
         </div>
-        <div>
-          <label htmlFor="message" className="text-sm font-semibold">Message:</label>
-          <textarea
-            id="message"
-            className="w-full p-2 border border-gray-400 rounded-md bg-gray-100 text-black"
-            placeholder="Enter Message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          ></textarea>
-          {/* Rating Section */}
-          <div className="flex justify-center mt-4">
+        {/* Rating Section */}
+        <div className="flex justify-center mt-4">
             {[1, 2, 3, 4, 5].map((rate) => (
               <button
                 key={rate}
@@ -136,7 +126,19 @@ const Feedback = () => {
               </button>
             ))}
           </div>
+        <div>
+          <label htmlFor="message" className="text-sm font-semibold">Message:</label>
+          <textarea
+            id="message"
+            className="w-full p-2 border border-gray-400 rounded-md bg-gray-100 text-black"
+            placeholder="Enter Message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+          ></textarea>
         </div>
+        
+        
         <motion.button
           type="submit"
           className="w-full bg-white text-black p-3 rounded-md mt-4 hover:bg-gray-800"

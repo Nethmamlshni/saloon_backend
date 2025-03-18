@@ -1,11 +1,13 @@
 import React from "react";
 import "animate.css";
+import Navbar from "./navBar";
 
 const workers = [
   {
-    name: "John Doe",
+    name: "Dasun Pramuditha",
     position: "Senior Stylist",
-    image: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205931.jpg",
+    //image: "https://img.freepik.com/free-photo/hairdresser-getting-ready-their-clients_23-2149205931.jpg",
+    image:"public/DasunDP.png",
     description: "With over 10 years of experience, John specializes in trendy and personalized hairstyles.",
     credentials: "Certified Hair Stylist, 10+ Years Experience",
     rating: 4,
@@ -46,7 +48,8 @@ const renderStars = (rating: number) => {
 
 const WorkersPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white py-12 font-serif">
+    <div className="min-h-screen bg-gray-900 text-white py-12 font-serif mt-15">
+      <Navbar />
       <h2 className="text-3xl font-bold text-center mb-10 animate__animated animate__fadeInDown">Meet Our Experts</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 px-6 md:px-20">
         {workers.map((worker, index) => (

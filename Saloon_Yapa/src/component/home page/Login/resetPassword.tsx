@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Navbar from "../HomePages/navBar";
 
 function ResetPassword() {
   const { token } = useParams();
@@ -40,6 +41,7 @@ function ResetPassword() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#090808] p-4 ">
+      <Navbar />
       <div className="relative p-6 bg-white shadow-lg rounded-lg max-w-md w-full text-center font-serif">
         {/* Key Icon at the Top */}
         <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black p-4 rounded-full shadow-lg">
